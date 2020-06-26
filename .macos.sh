@@ -33,29 +33,24 @@ echo "brew installing stuff"
 # ripgrep: rg is faster than alternatives
 # unixodbc: ODBC 3 connectivity for UNIX
 # zsh: UNIX shell
+# pyenv: Python version manager
 brew install dfu-util freetds git htop jq mosquitto ripgrep \
-unixodbc zsh
+unixodbc zsh pyenv
 
 
 echo "installing apps with brew cask"
 brew cask install google-chrome firefox brave-browser \
-visual-studio-code arduino 1password balenaetcher insomnia\
+visual-studio-code arduino 1password balenaetcher \
 zoomus iterm2 \
 spotify whatsapp zappy
 
 echo "Making zsh the default shell"
-chsh -s /usr/local/bin/zsh
-
-# Logic here to close session, open again in Iterm2 and continue with script
+chsh -s $(which zsh)
 
 echo "installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "instaling pyenv"
-curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
-echo "installing nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -70,9 +65,6 @@ defaults write http://com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag 
 
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
-
-
 
 
 ###############################################################################
@@ -100,13 +92,11 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 1
 # sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
 
-
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
-
 
 ###############################################################################
 # Photos                                                                      #
