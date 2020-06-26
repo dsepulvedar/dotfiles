@@ -1,5 +1,10 @@
 #!/usr/bin bash
 
+# ~/.macos — https://mths.be/macos
+# Modified by DSR
+# Run without downloading:
+curl https://raw.githubusercontent.com/dsepulvedar/dotfiles/master/.macos.sh | bash
+
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
@@ -15,6 +20,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 echo "Hello $(whoami)! Let's get you set up."
+
+echo "mkdir -p ${HOME}/Documents/Repositories"
+mkdir -p "${HOME}/Documents/Repositories"
 
 echo "installing Apple CommandLineTools"
 xcode-select --install
@@ -50,6 +58,31 @@ chsh -s $(which zsh)
 echo "installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+echo "cloning dotfiles"
+git clone https://github.com/dsepulvedar/dotfiles.git "${HOME}/Documents/Repositories"
+ln -s "${HOME}/Documents/Repositories/.zshrc" "${HOME}/.zshrc"
+ln -s "${HOME}/Documents/Repositories/.vimrc" "${HOME}/.vimrc"
+
+echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+
+source ~/.zshrc
+
+echo "installing Python 3.6.10 and making global"
+pyenv install 3.6.10
+pyenv global 3.6.10
+
+source ~/.zshrc
+
+pip install requests pyodc pymodbus pytz ipdb paho-mqtt pytz ipython 
+
+echo "installing node tls"
+nvm install --lts
+
+echo "node version"
+node --version
+
+echo "installing node red as a global program"
+npm install -g node-red
 
 
 ###############################################################################
