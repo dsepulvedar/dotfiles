@@ -1,9 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/Users/dsr/Library/Python/3.6/bin:$PATH
-export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/dsr/.oh-my-zsh"
 
@@ -97,4 +93,8 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey \^U backward-kill-line
 
+# Pyenv: enable shims and autocompletion
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 

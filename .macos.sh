@@ -3,7 +3,7 @@
 # ~/.macos — https://mths.be/macos
 # Modified by DSR
 # Run without downloading:
-curl https://raw.githubusercontent.com/dsepulvedar/dotfiles/master/.macos.sh | bash
+# curl https://raw.githubusercontent.com/dsepulvedar/dotfiles/master/.macos.sh | bash
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -19,17 +19,17 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # DSR's Customizations                                                       #
 ###############################################################################
 
-echo "Hello $(whoami)! Let's get you set up."
+echo "Hello $(whoami)! Let's get you set up.\n"
 
-echo "mkdir -p ${HOME}/Documents/Repositories"
-mkdir -p "${HOME}/Documents/Repositories"
+echo "mkdir -p ${HOME}/Repositories"
+mkdir -p "${HOME}/Repositories"
 
 echo "installing Apple CommandLineTools"
 xcode-select --install
 
 echo "installing homebrew"
 # install homebrew https://brew.sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 echo "brew installing stuff"
 # dfu-util: download and upload firmware to/from devices connected over USB. Needed to flash Particle devices over the CLI
@@ -52,28 +52,26 @@ visual-studio-code arduino 1password balenaetcher \
 zoomus iterm2 \
 spotify whatsapp zappy
 
-echo "Making zsh the default shell"
-chsh -s $(which zsh)
-
 echo "installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "cloning dotfiles"
-git clone https://github.com/dsepulvedar/dotfiles.git "${HOME}/Documents/Repositories"
-ln -s "${HOME}/Documents/Repositories/.zshrc" "${HOME}/.zshrc"
-ln -s "${HOME}/Documents/Repositories/.vimrc" "${HOME}/.vimrc"
+git clone https://github.com/dsepulvedar/dotfiles.git "${HOME}/Repositories/dotfiles"
+ln -sf "${HOME}/Repositories/dotfiles/.zshrc" "${HOME}/.zshrc"
+ln -sf "${HOME}/Repositories/dotfiles/.vimrc" "${HOME}/.vimrc"
 
-echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+echo "adding nvm plugin for zsh"
+git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 
 source ~/.zshrc
 
-echo "installing Python 3.6.10 and making global"
+echo "installing Python 3.6.10 and making it global"
 pyenv install 3.6.10
 pyenv global 3.6.10
 
 source ~/.zshrc
 
-pip install requests pyodc pymodbus pytz ipdb paho-mqtt pytz ipython 
+pip install requests pyodc pymodbus pytz ipdb paho-mqtt ipython 
 
 echo "installing node tls"
 nvm install --lts
@@ -138,7 +136,9 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
-
+echo "Making zsh the default shell"
+echo "$(which zsh)"  | sudo tee -a /etc/shells
+chsh -s $(which zsh)
 
 printf "TODO:\n\
 install: \n\
