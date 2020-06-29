@@ -31,11 +31,11 @@ c = get_config()
 
 ## lines of code to run at IPython startup.
 c.InteractiveShellApp.exec_lines = [
-    import requests,
-    import pytz,
-    import json,
-    import time,
-    import datetime as dt
+    'import requests',
+    'import pytz',
+    'import json',
+    'import time',
+    'import datetime as dt'
 ]
 
 ## A list of dotted module names of IPython extensions to load.
