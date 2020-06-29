@@ -59,6 +59,7 @@ echo "cloning dotfiles"
 git clone https://github.com/dsepulvedar/dotfiles.git "${HOME}/Repositories/dotfiles"
 ln -sf "${HOME}/Repositories/dotfiles/.zshrc" "${HOME}/.zshrc"
 ln -sf "${HOME}/Repositories/dotfiles/.vimrc" "${HOME}/.vimrc"
+ln -sf "${HOME}/Repositories/dotfiles/ipython_config.py" "${HOME}/.ipython/profile_default/ipython_config.py"
 
 echo "adding nvm plugin for zsh"
 git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
