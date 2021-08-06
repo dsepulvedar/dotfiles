@@ -35,7 +35,8 @@ c.InteractiveShellApp.exec_lines = [
     'import pytz',
     'import json',
     'import time',
-    'import datetime as dt'
+    'import datetime as dt',
+    'import struct'
 ]
 
 ## A list of dotted module names of IPython extensions to load.

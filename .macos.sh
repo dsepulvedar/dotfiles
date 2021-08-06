@@ -23,6 +23,7 @@ echo "Hello $(whoami)! Let's get you set up.\n"
 
 echo "mkdir -p ${HOME}/Repositories"
 mkdir -p "${HOME}/Repositories"
+mkdir -p "${HOME}/Desktop/Screenshots"
 
 echo "installing Apple CommandLineTools"
 xcode-select --install
@@ -43,14 +44,14 @@ echo "brew installing stuff"
 # zsh: UNIX shell
 # pyenv: Python version manager
 brew install dfu-util freetds git htop jq mosquitto ripgrep \
-unixodbc zsh pyenv
+unixodbc zsh telnet
 
 
 echo "installing apps with brew cask"
 brew cask install google-chrome firefox brave-browser \
 visual-studio-code arduino 1password balenaetcher \
-zoomus iterm2 \
-spotify whatsapp zappy
+zoom iterm2 docker ibm-cloud-cli \
+spotify whatsapp zappy telegram
 
 echo "installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -66,13 +67,13 @@ git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-
 
 source ~/.zshrc
 
-echo "installing Python 3.6.10 and making it global"
-pyenv install 3.6.10
-pyenv global 3.6.10
+# echo "installing Python 3.9.4 and making it global"
+# pyenv install 3.9.4
+# pyenv global 3.9.4
 
 source ~/.zshrc
 
-pip install requests pyodc pymodbus pytz ipdb paho-mqtt ipython 
+# pip install requests pyodbc pymodbus pytz ipdb paho-mqtt ipython 
 
 echo "installing node tls"
 nvm install --lts
@@ -81,8 +82,22 @@ echo "node version"
 node --version
 
 echo "installing node red as a global program"
-npm install -g node-red
+npm install -g node-red particle-cli
 
+echo "Making system modifications:"
+
+# Make Chrome Two finger swipe for back and forward
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool TRUE
+
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -123,12 +138,36 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 1
 # Enable HiDPI display modes (requires restart)
 # sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
-
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+###############################################################################
+# Finder                                                                      #
+###############################################################################
+
+# Finder: show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Enable snap-to-grid for icons on the desktop and in other icon views
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
+# Disable the warning before emptying the Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+
+# Show the /Volumes folder
+sudo chflags nohidden /Volumes
 
 ###############################################################################
 # Photos                                                                      #
@@ -147,8 +186,10 @@ install: \n\
   MS Office \n\
   Adobe Lr, Ps, Pr \n\
   GoPro Quick (https://community.gopro.com/t5/en/GoPro-legacy-software/ta-p/595533) \n\
-  PlayMemories Home \n\
   Giphy Capture \n\
+  USB Drivers for NodeMCU in Arduino: https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers \n\
+  Logi Options for MX Master 3 mouse \n\
+  Balena CLI
 \n\
 Restart Terminal.app\n\
 login to literally everything \n\
