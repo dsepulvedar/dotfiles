@@ -44,7 +44,7 @@ echo "brew installing stuff"
 # zsh: UNIX shell
 # pyenv: Python version manager
 brew install dfu-util freetds git htop jq mosquitto ripgrep \
-unixodbc zsh telnet pyenv curl
+unixodbc telnet pyenv curl
 
 
 echo "installing apps with brew cask"
