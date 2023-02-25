@@ -61,7 +61,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-nvm)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,8 +93,20 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey \^U backward-kill-line
 
-# Pyenv: enable shims and autocompletion
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# Pyenv:
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
+alias ic="ibmcloud"
+
+source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
+
+# Volta variables
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+alias curln="/usr/local/opt/curl/bin/curl"
+
+export LD_LIBRARY_PATH=/usr/local/opt/curl/lib
+export LIBRARY_PATH=/usr/local/opt/curl/lib

@@ -44,7 +44,7 @@ echo "brew installing stuff"
 # zsh: UNIX shell
 # pyenv: Python version manager
 brew install dfu-util freetds git htop jq mosquitto ripgrep \
-unixodbc zsh telnet
+unixodbc zsh telnet pyenv curl
 
 
 echo "installing apps with brew cask"
@@ -62,27 +62,33 @@ ln -sf "${HOME}/Repositories/dotfiles/.zshrc" "${HOME}/.zshrc"
 ln -sf "${HOME}/Repositories/dotfiles/.vimrc" "${HOME}/.vimrc"
 ln -sf "${HOME}/Repositories/dotfiles/ipython_config.py" "${HOME}/.ipython/profile_default/ipython_config.py"
 
-echo "adding nvm plugin for zsh"
-git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+# Install nvm as a plugin for zsh
+# echo "adding nvm plugin for zsh"
+# git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+
+# Install volta
+echo "Installing volta"
+curl https://get.volta.sh | bash
 
 source ~/.zshrc
 
-# echo "installing Python 3.9.4 and making it global"
-# pyenv install 3.9.4
-# pyenv global 3.9.4
-
-source ~/.zshrc
-
-# pip install requests pyodbc pymodbus pytz ipdb paho-mqtt ipython 
-
+# Install node LTS
 echo "installing node tls"
-nvm install --lts
+volta install node
 
 echo "node version"
 node --version
 
-echo "installing node red as a global program"
+echo "installing Node-red and Particle CLI as a global program"
 npm install -g node-red particle-cli
+
+# echo "installing Python 3.9.4 and making it global"
+pyenv install 3.10.9
+pyenv global 3.10.9
+
+source ~/.zshrc
+
+# pip install requests pyodbc pymodbus pytz ipdb paho-mqtt ipython 
 
 echo "Making system modifications:"
 
@@ -108,7 +114,7 @@ defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Trackpad: enable three finger drag
-defaults write http://com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
