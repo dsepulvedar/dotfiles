@@ -91,7 +91,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+###############################################################################
+# Keybings                                                                    #
+###############################################################################
+
+# Translates "Ctrl+U" to bash' backward-kill-line
+# "Ctrl+U" deletes all text from the cursor position to the beginning of the line
 bindkey \^U backward-kill-line
+
+# Enables the Emacs key bindings
+bindkey -e
+# "Ctrl+right-arrow" to move one word forward
+bindkey '\e\e[C' forward-word
+# "Ctrl+left-arrow" to move one word backward
+bindkey '\e\e[D' backward-word
 
 # Pyenv:
 export PYENV_ROOT="$HOME/.pyenv"
@@ -102,11 +115,11 @@ alias ic="ibmcloud"
 
 source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 
-# Volta variables
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
 alias curln="/usr/local/opt/curl/bin/curl"
 
 export LD_LIBRARY_PATH=/usr/local/opt/curl/lib
 export LIBRARY_PATH=/usr/local/opt/curl/lib
+
+# Volta variables
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
