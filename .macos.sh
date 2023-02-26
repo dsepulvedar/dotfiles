@@ -23,7 +23,6 @@ echo "Hello $(whoami)! Let's get you set up.\n"
 
 echo "mkdir -p ${HOME}/Repositories"
 mkdir -p "${HOME}/Repositories"
-mkdir -p "${HOME}/Desktop/Screenshots"
 
 echo "installing Apple CommandLineTools"
 xcode-select --install
@@ -174,6 +173,13 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
+
+###############################################################################
+# Dock, Dashboard, and hot corners                                            #
+###############################################################################
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
 
 ###############################################################################
 # Photos                                                                      #
