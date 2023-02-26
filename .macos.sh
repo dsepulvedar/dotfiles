@@ -48,7 +48,7 @@ unixodbc telnet pyenv curl
 
 
 echo "installing apps with brew cask"
-brew cask install google-chrome firefox brave-browser \
+brew install --cask google-chrome firefox brave-browser \
 visual-studio-code arduino 1password balenaetcher \
 zoom iterm2 docker ibm-cloud-cli \
 spotify whatsapp zappy telegram
