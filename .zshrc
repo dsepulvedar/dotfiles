@@ -111,11 +111,16 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+###############################################################################
+# Alias                                                                       #
+###############################################################################
 alias ic="ibmcloud"
+alias curln="/usr/local/opt/curl/bin/curl"
+alias cbcp="pbcopy"
+alias cbp="pbpaste"
+
 
 source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
-
-alias curln="/usr/local/opt/curl/bin/curl"
 
 export LD_LIBRARY_PATH=/usr/local/opt/curl/lib
 export LIBRARY_PATH=/usr/local/opt/curl/lib
