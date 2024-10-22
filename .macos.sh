@@ -49,8 +49,9 @@ unixodbc telnet pyenv curl
 echo "installing apps with brew cask"
 # Not use anymore: 
 # ibm-cloud-cli
+# arduino
 brew install --cask google-chrome firefox brave-browser \
-visual-studio-code arduino 1password balenaetcher \
+visual-studio-code 1password balenaetcher \
 zoom iterm2 docker \
 spotify whatsapp zappy telegram
 
