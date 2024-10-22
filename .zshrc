@@ -106,7 +106,15 @@ bindkey '\e\e[C' forward-word
 # "Ctrl+left-arrow" to move one word backward
 bindkey '\e\e[D' backward-word
 
-# Pyenv:
+###############################################################################
+# Keybings                                                                    #
+###############################################################################
+
+# Homebrew
+# Adds Homebrew to the PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
