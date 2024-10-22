@@ -47,9 +47,11 @@ unixodbc telnet pyenv curl
 
 
 echo "installing apps with brew cask"
+# Not use anymore: 
+# ibm-cloud-cli
 brew install --cask google-chrome firefox brave-browser \
 visual-studio-code arduino 1password balenaetcher \
-zoom iterm2 docker ibm-cloud-cli \
+zoom iterm2 docker \
 spotify whatsapp zappy telegram
 
 echo "installing oh-my-zsh"
@@ -78,12 +80,14 @@ volta install node
 echo "node version"
 node --version
 
+# Not use anymore: 
+# particle-cli
 echo "installing Node-red and Particle CLI as a global program"
-npm install -g node-red particle-cli
+npm install -g node-red
 
 # echo "installing Python 3.9.4 and making it global"
-pyenv install 3.10.9
-pyenv global 3.10.9
+pyenv install 3.12
+pyenv global 3.12
 
 source ~/.zshrc
 

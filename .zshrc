@@ -119,8 +119,12 @@ alias curln="/usr/local/opt/curl/bin/curl"
 alias cbcp="pbcopy"
 alias cbp="pbpaste"
 
+###############################################################################
+# Alias                                                                       #
+###############################################################################
 
-source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
+# Uncomment to enable ibmcloud CLI autocompletion, if installed
+# source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 
 export LD_LIBRARY_PATH=/usr/local/opt/curl/lib
 export LIBRARY_PATH=/usr/local/opt/curl/lib
@@ -128,3 +132,5 @@ export LIBRARY_PATH=/usr/local/opt/curl/lib
 # Volta variables
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Freetds
